@@ -69,21 +69,30 @@ public class TennisGame1 implements TennisGame {
 
     private String minScore(String score) {
         int minusResult = m_score1-m_score2;
-        if (minusResult==1) score ="Advantage player1";
+
+        score = minusResult(minusResult);
+        return score;
+    }
+
+    private String minusResult(int minusResult) {
+        String score;
+        if (minusResult ==1) score ="Advantage player1";
         else if (minusResult ==-1) score ="Advantage player2";
-        else if (minusResult>=2) score = "Win for player1";
+        else if (minusResult >=2) score = "Win for player1";
         else score ="Win for player2";
         return score;
     }
 
     private String equalScore(String score) {
         String palabras[]= {"Love-All","Fifteen-All","Thirty-All","Deuce"};
+        //Con operador ternario
+        //score = (m_score1 < 4)? palabras[m_score1] : "Deuce";
+        //Con if normal
         if (m_score1 <4){
             score = palabras[m_score1];
         }else{
             score="Deuce";
         }
-
         /*
         switch (m_score1)
         {
