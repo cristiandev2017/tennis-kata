@@ -13,17 +13,47 @@ public class TennisGame3 implements TennisGame {
 
     public String getScore() {
         String s;
-        if (p1 < 4 && p2 < 4 && !(p1 + p2 == 6)) {
-            String[] p = new String[]{"Love", "Fifteen", "Thirty", "Forty"}; 
+
+        //Intento 1
+        String p [] = {"Love","Fifteen","Thirty","Forty"};
+        boolean bol1 = testGame1();
+        boolean bol2=testGame2();
+        boolean bol3=testGame3();
+
+        if(bol1 && bol2 && bol3){
             s = p[p1];
-            return (p1 == p2) ? s + "-All" : s + "-" + p[p2];
-        } else {
+            return validateOne(s, p);
+        }else{
             if (p1 == p2)
                 return "Deuce";
             s = p1 > p2 ? p1N : p2N;
-            return ((p1-p2)*(p1-p2) == 1) ? "Advantage " + s : "Win for " + s;
+            return validateTwo(s);
         }
     }
+
+    private String validateTwo(String s) {
+        String testing2 = ((p1-p2)*(p1-p2) == 1) ? "Advantage " + s : "Win for " + s;
+        return testing2;
+    }
+
+    private String validateOne(String s, String[] p) {
+        String testing =(p1 == p2) ? s + "-All" : s + "-" + p[p2];
+        return testing;
+    }
+
+    boolean testGame1 (){
+        return (p1 < 4);
+    }
+
+    boolean testGame2(){
+        return(p2 < 4);
+    }
+
+    boolean testGame3(){
+        return (!(p1 + p2 == 6));
+    }
+
+
     
     public void wonPoint(String playerName) {
         if (playerName == "player1")
