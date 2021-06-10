@@ -40,9 +40,8 @@ public class TennisGame2 implements TennisGame
             P2res = "Love";
             score = P1res + "-" + P2res;
         }
-        if (P2point > 0 && P1point==0)
+        if ( isGreaterNumber(P2point,0) && isEqualsNumbers(P1point,0))
         {
-
             P2res = validatePoints(P2point);
             /*
             if (P2point==1)
@@ -88,13 +87,13 @@ public class TennisGame2 implements TennisGame
     }
 
     private void validatePointsFourP2() {
-        if (P2point==2)
+        if (isEqualsNumbers(P2point,2))
             P2res="Thirty";
-        if (P2point==3)
+        if (isEqualsNumbers(P2point,3))
             P2res="Forty";
-        if (P1point==1)
+        if (isEqualsNumbers(P1point,1))
             P1res="Fifteen";
-        if (P1point==2)
+        if (isEqualsNumbers(P1point,2))
             P1res="Thirty";
         score = P1res + "-" + P2res;
     }
@@ -144,25 +143,6 @@ public class TennisGame2 implements TennisGame
 
     private boolean isEqualsNumbers(int number1, int number2) {
         return number1 ==number2;
-    }
-
-    //Reutilizar metodos se estan usando la misma funcionalidad
-    public void SetP1Score(int number){
-
-        for (int i = 0; i < number; i++)
-        {
-            P1Score();
-        }
-
-    }
-
-    public void SetP2Score(int number){
-
-        for (int i = 0; i < number; i++)
-        {
-            P2Score();
-        }
-
     }
 
     //Reutilizar una sola función enviar el P1point como parametro
