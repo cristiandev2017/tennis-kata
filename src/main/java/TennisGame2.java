@@ -27,7 +27,6 @@ public class TennisGame2 implements TennisGame
 
         if (isGreaterNumber(P1point,0) && isEqualsNumbers(P2point,0))
         {
-
             P1res = validatePoints(P1point);
             /*
             if (P1point==1)
@@ -146,6 +145,11 @@ public class TennisGame2 implements TennisGame
     }
 
     //Reutilizar una sola función enviar el P1point como parametro
+    public int incrementValue(int value ){
+        return  value+1;
+    }
+
+    /*
     public void P1Score(){
         P1point++;
     }
@@ -153,11 +157,14 @@ public class TennisGame2 implements TennisGame
     public void P2Score(){
         P2point++;
     }
+     */
 
     public void wonPoint(String player) {
         if (player == "player1")
-            P1Score();
+            //P1Score();
+            P1point = incrementValue(P1point);
         else
-            P2Score();
+            P2point = incrementValue(P2point);
+            //P2Score();
     }
 }
