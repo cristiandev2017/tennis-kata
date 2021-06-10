@@ -21,11 +21,12 @@ public class TennisGame1 implements TennisGame {
     public String getScore() {
         String score = "";
         int tempScore=0;
-        if (m_score1==m_score2)
+        if(isEqualsNumbers(m_score1,m_score2))
         {
             score = equalScore(score);
         }
-        else if (m_score1>=4 || m_score2>=4)
+        //m_score1>=4  m_score2>=4
+        else if (isGreaterThanNumber(m_score1,4) ||isGreaterThanNumber(m_score2,4))
         {
             score = minScore(score);
         }
@@ -42,7 +43,7 @@ public class TennisGame1 implements TennisGame {
 
         for (int i = 1; i<3; i++)
         {
-            if (i==1) tempScore = m_score1;
+            if (isEqualsNumbers(i,1)) tempScore = m_score1;
             else { score +="-"; tempScore = m_score2;}
             score += palabras[tempScore];
             /*
@@ -69,19 +70,28 @@ public class TennisGame1 implements TennisGame {
 
     private String minScore(String score) {
         int minusResult = m_score1-m_score2;
-
+        
         score = minusResult(minusResult);
         return score;
     }
 
     private String minusResult(int minusResult) {
         String score;
-        if (minusResult ==1) score ="Advantage player1";
-        else if (minusResult ==-1) score ="Advantage player2";
-        else if (minusResult >=2) score = "Win for player1";
+        if (isEqualsNumbers(minusResult,1)) score ="Advantage player1";
+        else if (isEqualsNumbers(minusResult,-1))score ="Advantage player2";
+        else if (isGreaterThanNumber(minusResult,2)) score = "Win for player1";
         else score ="Win for player2";
         return score;
     }
+
+    private boolean isGreaterThanNumber(int number1, int number2) {
+        return number1 >=number2;
+    }
+
+    private boolean isEqualsNumbers(int number1, int number2) {
+        return number1 ==number2;
+    }
+
 
     private String equalScore(String score) {
         String palabras[]= {"Love-All","Fifteen-All","Thirty-All","Deuce"};

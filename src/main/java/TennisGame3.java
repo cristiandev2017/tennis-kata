@@ -54,7 +54,6 @@ public class TennisGame3 implements TennisGame {
     }
 
 
-    
     public void wonPoint(String playerName) {
         if (playerName == "player1")
             this.p1 += 1;
