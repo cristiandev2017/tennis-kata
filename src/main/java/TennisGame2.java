@@ -18,13 +18,40 @@ public class TennisGame2 implements TennisGame
     }
 
     public String getScore(){
-        if (isEqualsNumbers(P1point,P2point)  &&  isLessNumber(P1point, 4))
-        {
-            score = validateEqualsScore(score);
-        }
-        if (isEqualsNumbers(P1point,P2point) && isGreaterThanNumber(P1point,3))
-            score = "Deuce";
+        equalsAndLessFour(isEqualsNumbers(P1point, P2point), isLessNumber(P1point, 4), validateEqualsScore(score));
+        equalsAndLessFour(isEqualsNumbers(P1point,P2point), isGreaterThanNumber(P1point,3), "Deuce");
+        responseValidate();
+        validateP1AndP2Point();
+        equalsAndLessFour(isGreaterNumber(P1point,P2point), isGreaterThanNumber(P2point,3), "Advantage player1");
+        equalsAndLessFour(isGreaterNumber(P2point,P1point), isGreaterThanNumber(P1point,3), "Advantage player2");
+        WinPlayer();
+        return score;
+    }
 
+    private void WinPlayer() {
+        if (isGreaterThanNumber(P1point,4) && isGreaterThanNumber(P2point,0) && isGreaterThanNumber (P1point-P2point,2))
+        {
+            score = "Win for player1";
+        }
+        if (isGreaterThanNumber(P2point,4) && isGreaterThanNumber(P1point,0)  && isGreaterThanNumber(P2point-P1point,2))
+        {
+            score = "Win for player2";
+        }
+    }
+
+    private void validateP1AndP2Point() {
+        if (isGreaterNumber(P1point,P2point) && isLessNumber(P1point,4))
+        {
+            validatePointsFour();
+
+        }
+        if (isGreaterNumber(P2point,P1point)&& isLessNumber(P2point,4))
+        {
+            validatePointsFourP2();
+        }
+    }
+
+    private void responseValidate() {
         if (isGreaterNumber(P1point,0) && isEqualsNumbers(P2point,0))
         {
             P1res = validatePoints(P1point);
@@ -53,36 +80,12 @@ public class TennisGame2 implements TennisGame
             P1res = "Love";
             score = P1res + "-" + P2res;
         }
+    }
 
-        if (isGreaterNumber(P1point,P2point) && isLessNumber(P1point,4))
-        {
-            validatePointsFour();
-
+    private void equalsAndLessFour(boolean equalsNumbers, boolean lessNumber, String s) {
+        if (equalsNumbers && lessNumber) {
+            score = s;
         }
-        if (isGreaterNumber(P2point,P1point)&& isLessNumber(P2point,4))
-        {
-            validatePointsFourP2();
-        }
-
-        if (isGreaterNumber(P1point,P2point)  && isGreaterThanNumber(P2point,3) )
-        {
-            score = "Advantage player1";
-        }
-
-        if (isGreaterNumber(P2point,P1point) && isGreaterThanNumber(P1point,3))
-        {
-            score = "Advantage player2";
-        }
-
-        if (isGreaterThanNumber(P1point,4) && isGreaterThanNumber(P2point,0) && isGreaterThanNumber (P1point-P2point,2))
-        {
-            score = "Win for player1";
-        }
-        if (isGreaterThanNumber(P2point,4) && isGreaterThanNumber(P1point,0)  && isGreaterThanNumber(P2point-P1point,2))
-        {
-            score = "Win for player2";
-        }
-        return score;
     }
 
     private void validatePointsFourP2() {
@@ -153,7 +156,6 @@ public class TennisGame2 implements TennisGame
     public void P1Score(){
         P1point++;
     }
-
     public void P2Score(){
         P2point++;
     }
